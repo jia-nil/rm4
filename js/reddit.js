@@ -1,18 +1,25 @@
-// reddit.js — fetches public Reddit data, no API key or OAuth needed
+// reddit.js — fetches Reddit data via our own Vercel proxy (/api/reddit)
+// This avoids CORS entirely since the proxy runs server-side on Vercel.
 
 const Reddit = {
 
-  // Fetch everything we need about a user
   async fetch(username) {
     const [about, comments] = await Promise.all([
-      this._getAbout(username),
-      this._getComments(username),
+      this._call(username, 'about'),
+      this._call(username, 'comments'),
     ]);
+
+    if (!about?.data) throw new Error(`u/${username} not found on Reddit`);
+
+    const d = about.data;
+    const accountAgeDays = Math.floor((Date.now() - d.created_utc * 1000) / 86400000);
+    const karma = (d.link_karma || 0) + (d.comment_karma || 0);
 
     // Derive top subreddits from comment history
     const subCounts = {};
     const commentTexts = [];
-    for (const c of comments) {
+    for (const child of (comments?.data?.children || [])) {
+      const c = child.data;
       const sub = 'r/' + c.subreddit;
       subCounts[sub] = (subCounts[sub] || 0) + 1;
       if (c.body && c.body !== '[deleted]' && c.body.length > 20) {
@@ -26,45 +33,22 @@ const Reddit = {
       .map(([s]) => s);
 
     return {
-      username:        about.username,
-      karma:           about.karma,
-      accountAgeDays:  about.accountAgeDays,
-      topSubs,
-      // Pass recent comment snippets to AI for richer bio
-      commentSample:   commentTexts.slice(0, 8).join(' | '),
-    };
-  },
-
-  async _getAbout(username) {
-    const data = await this._call(`https://www.reddit.com/user/${username}/about.json`);
-    if (!data?.data) throw new Error(`u/${username} not found on Reddit`);
-    const d = data.data;
-    return {
       username:       d.name,
-      karma:          (d.link_karma || 0) + (d.comment_karma || 0),
-      accountAgeDays: Math.floor((Date.now() - d.created_utc * 1000) / 86400000),
+      karma,
+      accountAgeDays,
+      topSubs,
+      commentSample:  commentTexts.slice(0, 8).join(' | '),
     };
   },
 
-  async _getComments(username) {
-    const data = await this._call(`https://www.reddit.com/user/${username}/comments.json?limit=100&raw_json=1`);
-    return (data?.data?.children || []).map(c => c.data);
-  },
-
-  // Try direct first, fall back to CORS proxy for hosted environments
-  async _call(url) {
-    try {
-      const r = await fetch(url, {
-        headers: { 'User-Agent': 'RedditMatch/1.0' },
-      });
-      if (r.ok) return r.json();
-      throw new Error('HTTP ' + r.status);
-    } catch (_) {
-      const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      const r2 = await fetch(proxy);
-      if (!r2.ok) throw new Error('Could not reach Reddit API');
-      const w = await r2.json();
-      return JSON.parse(w.contents);
+  // Calls our own /api/reddit?username=X&type=Y proxy
+  async _call(username, type) {
+    const url = `/api/reddit?username=${encodeURIComponent(username)}&type=${type}`;
+    const r = await fetch(url);
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.error || `Request failed (${r.status})`);
     }
+    return r.json();
   },
 };
