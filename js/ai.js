@@ -29,18 +29,13 @@ Write a 2-3 sentence bio in first person that:
 
 Return ONLY the bio text. No quotes, no labels, no explanation.`;
 
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${CONFIG.OPENROUTER_KEY}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin,
-        'X-Title': 'RedditMatch',
       },
       body: JSON.stringify({
-        model: CONFIG.AI_MODEL,
-        max_tokens: 150,
-        messages: [{ role: 'user', content: prompt }],
+        prompt,
       }),
     });
 
