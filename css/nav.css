@@ -1,0 +1,7 @@
+#nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--or);letter-spacing:-.4px}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:var(--or)}
+#nav-user{display:flex;align-items:center;gap:10px}
+#nav-username{font-size:13px;font-weight:600;color:var(--muted)}
+.nav-restart{padding:6px 14px;border-radius:99px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:var(--text);transition:all .15s;font-family:'Manrope',sans-serif}
+.nav-restart:hover{border-color:var(--or);color:var(--or)}

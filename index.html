@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>RedditMatch — Find Your People</title>
+  <meta name="description" content="Match with real Redditors based on your actual Reddit history."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <link rel="stylesheet" href="css/hero.css"/>
+  <link rel="stylesheet" href="css/flow.css"/>
+  <link rel="stylesheet" href="css/results.css"/>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-logo" onclick="App.goHome()">
+      <div class="nav-dot"></div>
+      <span>RedditMatch</span>
+    </div>
+    <div id="nav-user" style="display:none">
+      <span id="nav-username"></span>
+      <button class="nav-restart" onclick="App.restart()">Start Over</button>
+    </div>
+  </nav>
+
+  <!-- PAGES -->
+  <div id="page-hero"    class="page active"></div>
+  <div id="page-flow"    class="page"></div>
+  <div id="page-results" class="page"></div>
+
+  <!-- SCRIPTS — order matters -->
+  <script src="js/config.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/reddit.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/match.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/pages/hero.js"></script>
+  <script src="js/pages/flow.js"></script>
+  <script src="js/pages/results.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

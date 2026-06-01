@@ -1,0 +1,40 @@
+.results-wrap{max-width:900px;margin:0 auto;padding:2rem 1.25rem 5rem}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:12px;background:#fff;border-radius:16px;border:1px solid var(--border);padding:1.25rem 1.5rem}
+.rh-left{display:flex;align-items:center;gap:12px}
+.rh-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;flex-shrink:0}
+.rh-name{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--dark)}
+.rh-meta{font-size:13px;color:var(--muted);margin-top:2px}
+.rh-count{font-size:14px;color:var(--muted);font-weight:500}
+.rh-count strong{color:var(--or);font-family:'Syne',sans-serif}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.rcard{background:#fff;border-radius:18px;border:1px solid var(--border);padding:1.5rem;animation:fadeUp .4s ease backwards;transition:box-shadow .2s,border-color .2s}
+.rcard:hover{box-shadow:0 6px 24px rgba(0,0,0,.09);border-color:rgba(255,69,0,.25)}
+.rcard-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.rcard-av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:19px;color:#fff;flex-shrink:0}
+.rcard-info{flex:1;min-width:0}
+.rcard-name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--dark)}
+.rcard-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.rcard-karma{font-size:12px;color:var(--muted);margin-top:2px}
+.rcard-score{background:var(--or);color:#fff;border-radius:99px;font-size:12px;font-weight:700;padding:4px 10px;font-family:'Syne',sans-serif;white-space:nowrap;flex-shrink:0;align-self:flex-start}
+.rcard-bio{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rcard-shared{margin-bottom:10px}
+.shared-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.shared-chips{display:flex;flex-wrap:wrap;gap:5px}
+.schip{font-size:11px;border-radius:99px;padding:3px 9px;font-weight:600}
+.schip.sub{background:var(--pu-bg);color:var(--purple)}
+.schip.hobby{background:var(--or-bg);color:var(--or)}
+.schip.more{background:var(--surface);color:var(--muted)}
+.rcard-lf{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:12px;padding:8px 12px;background:var(--surface);border-radius:8px}
+.lf-label{font-weight:600;color:var(--text)}
+.rcard-connect{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;border-radius:10px;background:var(--or);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;text-decoration:none;transition:all .15s;margin-top:4px}
+.rcard-connect:hover{background:var(--or2);transform:translateY(-1px)}
+.rcard-note{font-size:11px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.4}
+.empty-state{text-align:center;padding:4rem 1.5rem;background:#fff;border-radius:18px;border:1px solid var(--border);max-width:480px;margin:0 auto}
+.es-icon{font-size:48px;margin-bottom:12px}
+.es-title{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--dark);margin-bottom:8px}
+.es-sub{font-size:14px;color:var(--muted);line-height:1.6;max-width:360px;margin:0 auto 1.25rem}
+.es-url{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:10px;padding:10px 14px;justify-content:space-between}
+.es-url code{font-size:13px;color:var(--text)}
+.copy-btn{padding:6px 14px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;color:var(--text);transition:all .15s;font-family:'Manrope',sans-serif}
+.copy-btn:hover{border-color:var(--or);color:var(--or)}
+@media(max-width:480px){.results-grid{grid-template-columns:1fr}}

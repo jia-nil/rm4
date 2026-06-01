@@ -1,0 +1,11 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--or:#FF4500;--or2:#FF6D3B;--or-bg:#FFF2EE;--or-border:rgba(255,69,0,.2);--or-shadow:rgba(255,69,0,.2);--dark:#0F0F10;--text:#1A1A1B;--muted:#87888C;--border:rgba(0,0,0,.09);--surface:#F6F7F8;--card:#fff;--purple:#6C47C9;--pu-bg:#F2EEFF;--teal:#09B8A0;--red:#E0302A;--green:#46D160;--green-bg:#EDFAF1;--nav-h:56px}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--surface);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:99px}
+.page{display:none;padding-top:var(--nav-h)}.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%,100%{opacity:.5}50%{opacity:1}}
+.spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,69,0,.15);border-top-color:var(--or);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
